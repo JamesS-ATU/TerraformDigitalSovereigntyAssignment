@@ -6,18 +6,18 @@ policy "provider-version" {
   enforcement_level = "soft-mandatory"
 }
 
-policy "ec2-types" {
+policy "instance_type" {
   enforcement_level = "soft-mandatory"
 }
 
-policy "ebs-encryption" {
+policy "encryption" {
   enforcement_level = "soft-mandatory"
 }
 
-policy "imdsv2" {
+policy "metadata" {
   enforcement_level = "soft-mandatory"
 }
 
-policy "ssh-restrictions" {
+policy "network" {
   enforcement_level = "soft-mandatory"
 }
