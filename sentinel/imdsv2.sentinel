@@ -1,0 +1,8 @@
+import "tfplan/v2" as tfplan
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or
+    rc.change.after.metadata_options.http_tokens is "required"
+  }
+}
