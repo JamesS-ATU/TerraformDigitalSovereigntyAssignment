@@ -1,0 +1,12 @@
+import "tfplan/v2" as tfplan
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_security_group_rule" or
+    not (
+      rc.change.after.from_port is 22 and
+      rc.change.after.to_port is 22 and
+      "0.0.0.0/0" in rc.change.after.cidr_blocks
+    )
+  }
+}

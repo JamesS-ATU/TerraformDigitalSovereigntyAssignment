@@ -1,0 +1,6 @@
+import "tfconfig/v2" as tfconfig
+
+main = rule {
+  tfconfig.required_providers.aws.source is "hashicorp/aws" and
+  tfconfig.required_providers.aws.version is not null
+}

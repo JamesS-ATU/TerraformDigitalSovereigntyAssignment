@@ -1,0 +1,14 @@
+import "tfplan/v2" as tfplan
+
+allowed_regions = [
+  "eu-west-1",
+  "eu-west-2",
+  "eu-central-1"
+]
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or
+    rc.change.after.availability_zone matches "^eu-"
+  }
+}
