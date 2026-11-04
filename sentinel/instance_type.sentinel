@@ -2,7 +2,7 @@ import "tfplan/v2" as tfplan
 
 allowed_types = [
   "t2.micro",
-  "t3.micro"
+  "t3.micro",
 ]
 
 main = rule {
