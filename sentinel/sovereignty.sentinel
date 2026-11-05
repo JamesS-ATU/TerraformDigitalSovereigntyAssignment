@@ -9,6 +9,13 @@ allowed_regions = [
 main = rule {
   all tfplan.resource_changes as _, rc {
     rc.type != "aws_instance" or
-    rc.change.after.availability_zone matches "^eu-"
+    rc.change.after.availability_zone in allowed_regions
+  }
+}
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or
+    rc.change.after.instance_type in allowed_types
   }
 }
