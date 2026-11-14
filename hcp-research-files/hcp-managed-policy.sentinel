@@ -1,0 +1,83 @@
+import "tfplan/v2" as tfplan
+import "tfconfig/v2" as tfconfig
+
+allowed_regions = [
+  "eu-west-1",
+  "eu-west-2",
+  "eu-central-1",
+]
+
+
+allowed_types = [
+  "t2.micro",
+  "t3.micro",
+]
+
+availability_zone = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or
+    rc.change.after.availability_zone matches
+      "^(eu-west-1|eu-west-2|eu-central-1)[a-z]$"
+  }
+}
+
+encryption = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or (
+      length(rc.change.after.root_block_device) > 0 and
+      rc.change.after.root_block_device[0].encrypted)
+  }
+}
+instance = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or
+    rc.change.after.instance_type in allowed_types
+  }
+  }
+metadata = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_instance" or (
+      length(rc.change.after.metadata_options) > 0 and
+      rc.change.after.metadata_options[0].http_tokens is "required")
+  }
+}
+network = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type != "aws_security_group_rule" or
+    not (rc.change.after.from_port is 22 and
+      rc.change.after.to_port is 22 and 
+      "0.0.0.0/0" in rc.change.after.cidr_blocks)
+  }
+}
+provider = rule {
+  tfconfig.providers.aws.full_name is
+    "registry.terraform.io/hashicorp/aws" and
+  tfconfig.providers.aws.version_constraint matches "^~>"
+}
+tags = rule {
+  all tfplan.resource_changes as _, rc {
+    (
+      rc.type != "aws_instance" and
+      rc.type != "aws_s3_bucket" and
+      rc.type != "aws_security_group") or (
+      rc.change.after.tags.Environment is not null and
+      rc.change.after.tags.Owner is not null and
+      rc.change.after.tags.AssignmentName is not null)
+  }
+}
+modules = rule {
+  length(tfconfig.module_calls) is 0 or
+  all tfconfig.module_calls as _, mc {
+    mc.version is not null
+  }
+}
+main = rule {
+  availability_zone and
+  encryption and
+  instance and
+  metadata and
+  network and
+  provider and
+  tags and
+  modules
+}
