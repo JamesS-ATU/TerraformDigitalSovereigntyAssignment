@@ -8,8 +8,7 @@ resource "aws_s3_bucket" "example" {
   tags = {
     Environment = var.environment
     Owner       = var.owner
-    CostCentre  = var.cost_centre
-  }
+  AssignmentName = var.assignementname }
 }
 
 resource "aws_security_group" "web" {
@@ -17,9 +16,9 @@ resource "aws_security_group" "web" {
   description = "Web server security group"
 
   tags = {
-    Environment = var.environment
-    Owner       = var.owner
-    CostCentre  = var.cost_centre
+    Environment    = var.environment
+    Owner          = var.owner
+    AssignmentName = var.assignementname
   }
 }
 
@@ -34,9 +33,9 @@ resource "aws_security_group_rule" "ssh" {
 }
 
 resource "aws_instance" "web" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-
+  ami               = var.ami_id
+  instance_type     = var.instance_type
+  availability_zone = var.aws_region
   vpc_security_group_ids = [
     aws_security_group.web.id
   ]
@@ -51,9 +50,9 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name        = "terraform-demo"
-    Environment = var.environment
-    Owner       = var.owner
-    CostCentre  = var.cost_centre
+    Name           = "terraform-demo"
+    Environment    = var.environment
+    Owner          = var.owner
+    AssignmentName = var.assignementname
   }
 }

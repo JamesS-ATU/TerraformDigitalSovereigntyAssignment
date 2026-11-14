@@ -1,0 +1,13 @@
+import "tfplan/v2" as tfplan
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    (
+      rc.type != "aws_instance" and
+      rc.type != "aws_s3_bucket" and
+      rc.type != "aws_security_group") or (
+      "Environment" in keys(rc.change.after.tags) and
+      "Owner" in keys(rc.change.after.tags) and
+      "AssignmentName" in keys(rc.change.after.tags))
+  }
+}

@@ -22,6 +22,6 @@ variable "owner" {
   type = string
 }
 
-variable "cost_centre" {
+variable "assignementname" {
   type = string
 }
