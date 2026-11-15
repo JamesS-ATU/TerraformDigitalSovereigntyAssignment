@@ -6,7 +6,7 @@ mock "tfplan/v2" {
 
         change = {
           after = {
-            availability_zone = "eu-west-1a"
+            availability_zone = "us-west-1a"
           }
         }
       }
