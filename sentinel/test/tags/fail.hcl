@@ -5,10 +5,12 @@ mock "tfplan/v2" {
         type = "aws_instance"
         change = {
           after = {
-            tags = {
-              Environment = "Prod"
-              Owner = "James"
-            }
+             tags = {
+                Name           = "terraform-demo"
+                Environment    = ""
+                Owner          = ""
+                AssignmentName = ""
+  }
           }
         }
       }

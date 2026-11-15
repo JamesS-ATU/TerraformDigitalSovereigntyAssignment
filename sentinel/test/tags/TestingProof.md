@@ -7,7 +7,7 @@
 
 **Policy**
 
-[Sovereignty Sentinel Policy](../../tags.sentinel)
+[Tags Sentinel Policy](../../tags.sentinel)
 
 **Mocks**
 
@@ -22,7 +22,7 @@ Every EC2 instance, S3 bucket, and Security Group must contain the tags Environm
 
 *Command line Sentinel*
 
-![Local Image](soverignty.png)
+![Local Image](Tags.png)
 
 *HCP Online Portal*
 
@@ -74,9 +74,9 @@ resource "aws_instance" "web" {
 
   tags = {
     Name           = "DigitalSovereigntyAssignment"
-    Environment    = var.environment
-    Owner          = var.owner
-    AssignmentName = var.assignementname
+    Environment    = ""
+    Owner          = ""
+    AssignmentName = ""
   }
 }
 
