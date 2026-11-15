@@ -41,7 +41,7 @@ resource "aws_instance" "web" {
   ]
 
   root_block_device {
-    encrypted = true
+    encrypted = false
   }
 
   metadata_options {
