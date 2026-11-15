@@ -51,8 +51,8 @@ resource "aws_instance" "web" {
 
   tags = {
     Name           = "terraform-demo"
-    Environment    = var.environment
-    Owner          = var.owner
-    AssignmentName = var.assignementname
+    Environment    = ""
+    Owner          = ""
+    AssignmentName = ""
   }
 }
