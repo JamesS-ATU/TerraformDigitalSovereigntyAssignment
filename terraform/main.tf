@@ -35,7 +35,7 @@ resource "aws_security_group_rule" "ssh" {
 resource "aws_instance" "web" {
   ami               = var.ami_id
   instance_type     = var.instance_type
-  availability_zone = var.availability_zone
+  availability_zone = "us-west-1a"
   vpc_security_group_ids = [
     aws_security_group.web.id
   ]
