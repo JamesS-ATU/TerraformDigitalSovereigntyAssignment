@@ -50,9 +50,9 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name           = "terraform-demo"
-    Environment    = ""
-    Owner          = ""
-    AssignmentName = ""
+    Name           = "DigitalSovereignty"
+    Environment    = var.environment
+    Owner          = var.owner
+    AssignmentName = var.assignementname
   }
 }
