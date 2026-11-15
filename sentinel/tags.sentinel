@@ -5,9 +5,12 @@ main = rule {
     (
       rc.type != "aws_instance" and
       rc.type != "aws_s3_bucket" and
-      rc.type != "aws_security_group") or (
+      rc.type != "aws_security_group")or (
       "Environment" in keys(rc.change.after.tags) and
       "Owner" in keys(rc.change.after.tags) and
-      "AssignmentName" in keys(rc.change.after.tags))
+      "AssignmentName" in keys(rc.change.after.tags) and
+      rc.change.after.tags["Environment"] is not "" and
+      rc.change.after.tags["Owner"] is not "" and
+      rc.change.after.tags["AssignmentName"] is not "")
   }
 }
