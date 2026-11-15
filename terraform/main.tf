@@ -18,7 +18,7 @@ resource "aws_security_group" "web" {
   tags = {
     Environment    = var.environment
     Owner          = var.owner
-
+    AssignmentName = var.assignementname
   }
 }
 
