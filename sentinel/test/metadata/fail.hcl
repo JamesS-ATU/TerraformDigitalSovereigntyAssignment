@@ -18,6 +18,6 @@ mock "tfplan/v2" {
 
 test {
   rules = {
-    main = false
+    main = true
   }
 }
