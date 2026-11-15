@@ -50,8 +50,11 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name           = "DigitalSovereigntyAssignment"
-    Environment = "Prod"  
-    Owner = "James"
+
+    Name           = "DigitalSovereignty"
+    Environment    = var.environment
+    Owner          = var.owner
+    AssignmentName = var.assignementname
+
   }
 }
