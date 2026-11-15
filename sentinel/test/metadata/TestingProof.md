@@ -1,8 +1,8 @@
 # Terraform Digital Sovereignty Assignment - Metadata.Sentinel
 
 **Student:** James Smith  
-**Module:** DevOps and Cloud Automation  
-**Institution:** Atlantic Technological University (ATU)
+**Student Number:** L00205519
+**Module:**  IaC for DevOps Pipelines
 
 
 **Policy**
