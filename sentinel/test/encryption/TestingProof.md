@@ -119,3 +119,4 @@ the test expects a true result, and will pass or fail depending on the value of 
     encrypted = false
   }
   ```
+  ![Local Image](HCP_Fail.png)
