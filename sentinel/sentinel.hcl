@@ -2,11 +2,7 @@ policy "sovereignty" {
   enforcement_level = "soft-mandatory"
 }
 
-policy "provider-version" {
-  enforcement_level = "soft-mandatory"
-}
-
-policy "instance_type" {
+policy "instance" {
   enforcement_level = "soft-mandatory"
 }
 
@@ -19,5 +15,8 @@ policy "metadata" {
 }
 
 policy "network" {
+  enforcement_level = "soft-mandatory"
+}
+policy "tags" {
   enforcement_level = "soft-mandatory"
 }
