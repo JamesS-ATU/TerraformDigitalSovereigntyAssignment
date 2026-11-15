@@ -22,7 +22,7 @@ Every security group rule is checked. If a rule allows SSH (port 22) from anywhe
 
 *Command line Sentinel*
 
-![Local Image](network.png)
+![Local Image](Network.png)
 
 *HCP Online Portal*
 
